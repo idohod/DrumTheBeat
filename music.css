@@ -1,6 +1,7 @@
 .music-sheet {
     position: relative;
     width: calc(100% - 30px); 
+    padding: 7px;
     margin: 15px;
     background-color: #ffffff2b;
     height: 100px;
@@ -139,50 +140,6 @@ footer div {
     left: 100.5%; 
 }
 
-.Bass ,.Bass1 ,.Bass2 ,.Bass3 {
-    position: absolute; 
-    bottom: 10px; 
-    padding-left: 10px;
-    visibility: hidden;
-}
-
-.Snare, .Snare1 , .Snare2 ,.Snare3{
-    position: absolute; 
-    top: 40px; 
-    bottom: 10px; 
-    padding-left: 10px;
-    visibility: hidden;  
-
-}
-
-.Snare span, .Snare1 span , .Snare2 span ,.Snare3 span ,.HH span, .HH1 span , .HH2 span ,.HH3 span,
-.Bass span, .Bass1 span , .Bass2 span ,.Bass3 span
-{
-    margin-left: 50px;
-    padding-left: 10px;
-   
-}
-
-.HH , .HH1 , .HH2 ,.HH3{
-    position: absolute; 
-    top: -5px; 
-    padding-left: 10px;
-    visibility: hidden;
-
-}
-.HH, .Snare , .Bass{
-    left: 10px;   
-}
-.HH1 ,.Snare1, .Bass1{   
-    left: 350px;    
-}
-.HH2 ,.Snare2, .Bass2{
-    left: 680px;  
-}
-.HH3 ,.Snare3, .Bass3{
-   left: 1000px; 
-}
-
 #musicStyle {
     margin-left: 50%;
     margin-top: 10px;
@@ -204,5 +161,32 @@ footer div {
     background-color: #fff;
 }
 #gitarImg:hover, #drumsImg:hover, #playDrumsImg:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
+}
+
+#HHcontainer, #SnareContainer, #BassContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; 
+    margin-bottom: 20px; 
+}
+
+.HH, .Snare, .Bass {
+    font-size: 20px; 
+    padding: 10px; 
+    width:37px; 
+    margin: 5px; 
+    display: flex;
+    visibility: hidden; 
+}
+#HHcontainer .HH {
+    margin-top: -24px; 
+}
+
+#SnareContainer .Snare {
+    margin-top: -22px; 
+}
+
+#BassContainer .Bass {
+    margin-top:-22px; 
 }
