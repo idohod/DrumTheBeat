@@ -1,15 +1,13 @@
 .music-sheet {
     position: relative;
-    width: calc(100% - 30px); /* Adjust width if padding or margin is causing issues */
-    padding: 7px;
+    width: calc(100% - 30px); 
     margin: 15px;
     background-color: #ffffff2b;
     height: 100px;
 }
 
-/* Example of reducing margin to avoid clipping */
 .music-sheet {
-    margin: 10px; /* Adjust as needed */
+    margin: 10px; 
 }
 
 body {
@@ -19,7 +17,6 @@ body {
     box-sizing: border-box;
 }
 
-/* Navigation bar styles */
 nav {
     background-color: #333;
     color: white;
@@ -37,37 +34,35 @@ nav div {
     font-size: 16px;
 }
 
-/* Main content styles */
+
 main {
     padding: 20px;
 }
 
-/* Table styles */
+
 table {
     width: 100%;
     border-collapse: collapse;
 }
 
-/* Table cell styles */
-/* Ensure vertical alignment of the cell content */
+
 td {
-    vertical-align: top; /* Aligns content to the top */
+    vertical-align: top; 
     padding: 10px;
     overflow: visible;
 }
 
 aside {
     display: flex;
-    justify-content: flex-start; /* Aligns items to the start of the container */
-    align-items: center; /* Centers items vertically */
+    justify-content: flex-start; 
+    align-items: center; 
     overflow: visible;
 }
-/* Button positioning */
 button {
-    position: absolute; /* Absolute positioning relative to .music-sheet */
-    top: 125px; /* Adjust top position */
-    left: 570px; /* Adjust left position */
-    width: 150px; /* Adjust size as needed */
+    position: absolute; 
+    top: 125px;
+    left: 570px;
+    width: 150px; 
     height: 70px;
     border: 1px solid gray;
     background-color: #f1c40f;
@@ -76,12 +71,10 @@ button {
     font-size: 25px;
 }
 
-/* Button hover effect */
 button:hover {
     background-color: #f39c12;
 }
 
-/* Footer styles */
 footer {
     background-color: #333;
     color: white;
@@ -104,7 +97,6 @@ footer div {
     font-weight: bold;
 }
 
-/* Staff lines */
 .staff {
     width: 100%;
     height: 2px;
@@ -118,7 +110,6 @@ footer div {
 .music-sheet .staff:nth-child(4) { top: 70%; }
 .music-sheet .staff:nth-child(5) { top: 90%; }
 
-/* Vertical dividing lines */
 .vertical-line {
     position: absolute;
     top: 11px;
@@ -128,12 +119,10 @@ footer div {
     background-color: black;
 }
 
-/* Adding a vertical line on the left side */
 .line0 {
     left: 0.5%;
 }
 
-/* Four equal vertical divisions */
 .line1 {
     left: 25%;
 }
@@ -147,26 +136,22 @@ footer div {
 }
 
 .line4 {
-    left: 100.5%; /* Adjust this if needed for better alignment */
+    left: 100.5%; 
 }
 
-/* Tabs visibility and spacing */
 .Bass ,.Bass1 ,.Bass2 ,.Bass3 {
-    position: absolute; /* Ensure .Bass is positioned independently */
-    bottom: 10px; /* Position it lower */
+    position: absolute; 
+    bottom: 10px; 
     padding-left: 10px;
     visibility: hidden;
 }
 
 .Snare, .Snare1 , .Snare2 ,.Snare3{
-    position: absolute; /* Ensure .Bass is positioned independently */
-    top: 40px; /* Position it higher than .Bass */
-    bottom: 10px; /* Position it lower */
+    position: absolute; 
+    top: 40px; 
+    bottom: 10px; 
     padding-left: 10px;
-    visibility: hidden;
-    height: 15px;
-    width: 15px;
-    border: 1px solid blue ;
+    visibility: hidden;  
 
 }
 
@@ -179,41 +164,24 @@ footer div {
 }
 
 .HH , .HH1 , .HH2 ,.HH3{
-    position: absolute; /* Ensure .HH is positioned independently */
-    top: -5px; /* Position it higher than .Bass */
+    position: absolute; 
+    top: -5px; 
     padding-left: 10px;
     visibility: hidden;
 
 }
 .HH, .Snare , .Bass{
-    left: 10px; 
-    height: 15px;
-   width: 15px;
-   border: 1px solid blue ;
-
+    left: 10px;   
 }
 .HH1 ,.Snare1, .Bass1{   
-    left: 350px; 
-    height: 15px;
-   width: 15px;
-   border: 1px solid blue ;
+    left: 350px;    
 }
 .HH2 ,.Snare2, .Bass2{
-    left: 680px;
-    height: 15px;
-   width: 15px;
-   border: 1px solid blue ;
+    left: 680px;  
 }
-
 .HH3 ,.Snare3, .Bass3{
-   left: 1000px;
-   height: 15px;
-   width: 15px;
-   border: 1px solid blue ;
-
-
+   left: 1000px; 
 }
-
 
 #musicStyle {
     margin-left: 50%;
@@ -238,45 +206,3 @@ footer div {
 #gitarImg:hover, #drumsImg:hover, #playDrumsImg:hover {
     transform: scale(1.05);
 }
-
-/* Tooltip styling */
-.tooltip ,.tooltip1 ,.tooltip2 {
-    visibility: hidden;   
-    margin-left: 47%;
-    margin-top: -25px;
-    color: red;
-}
-
-/* Show tooltip on hover */
-.HH:hover ~ #tooltip,
-.HH1:hover ~ #tooltip,
-.HH2:hover ~ #tooltip,
-.HH3:hover ~ #tooltip {
-    visibility: visible;
-    opacity: 1;
-    
-}
-
-.Snare:hover ~ #tooltip,
-.Snare1:hover ~ #tooltip,
-.Snare2:hover ~ #tooltip,
-.Snare3:hover ~ #tooltip {
-    visibility: visible;
-    opacity: 1;
-    
-}
-
-
-.Bass:hover ~ #tooltip,
-.Bass1:hover ~ #tooltip,
-.Bass2:hover ~ #tooltip,
-.Bass3:hover ~ #tooltip {
-    visibility: visible;
-    opacity: 1;
-    
-}
-
-
-
-
-

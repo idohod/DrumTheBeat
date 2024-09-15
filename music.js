@@ -33,7 +33,7 @@ function combineBassArrays() {
 
 function setHHVis(fullHH, vis) {
 
-    for (i = 0; i < fullHH.length; i++)
+    for (let i = 0; i < fullHH.length; i++)
         fullHH[i].style.visibility = vis
 
 };
@@ -54,7 +54,7 @@ function setArrVis(fullBass, fullSnare, vis) {
 
 function setResalt(randArray, randBass, randSnare) {
 
-    for (i = 0; i < randArray.length; i++) {
+    for (let i = 0; i < randArray.length; i++) {
         if (randArray[i] == 1) {
             randSnare[i].style.visibility = "hidden"
             randBass[i].style.visibility = "visible"
@@ -77,7 +77,7 @@ function hideAll(arr) {
 function randArray() {
 
     var randArray = []
-    for (i = 0; i < size; i++) {
+    for (let i = 0; i < size; i++) {
         if (i == 0 || i == 8)
             randArray[i] = 1
         else if (i == 4 || i == 12)
@@ -92,7 +92,7 @@ function randArray() {
 function checkRandom(randArray){
 
     stackNums = [4,8,12]
-    for (i=0;i<size - 2;i++){
+    for (let i = 0 ; i < size - 2 ; i ++){
 
        if(randArray[i] == randArray[i + 1] && randArray[i + 1] == randArray[i + 2]){
           if(i + 2 in stackNums)
@@ -108,6 +108,7 @@ function checkRandom(randArray){
     return randArray
 }
 
+
 document.querySelector(".js-play").addEventListener('click', function () {
     var fullHH = combineHHArrays()
     var fullSnare = combineSnareArrays()
@@ -118,10 +119,5 @@ document.querySelector(".js-play").addEventListener('click', function () {
     var vis = numClick % 2 === 0 ? "hidden" : "visible"
     setHHVis(fullHH, vis)
     setArrVis(fullBass, fullSnare, vis)
-
-    checkVisibility(fullHH,tooltip)
-    checkVisibility(fullSnare,tooltip1)
-    checkVisibility(fullBass,tooltip2)
-
 
 });
