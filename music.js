@@ -67,16 +67,16 @@ function HH16(fullHH) {
 }
 
 // Show or hide all beats
-function BeatVisibility(fullHH, fullBass, fullSnare, level) {
+function BeatVisibility(fullHH, fullSnare,  fullBass, level) {
     var randomBeat = randBeat(level);
     if (level == "beginner"){
         var res = easyBeats();
-        BeatResalt(res, fullBass, fullSnare);
+        BeatResalt(res, fullSnare, fullBass);
     }
     else if (level == "advance")
-        BeatResalt(checkBeatRandom(randomBeat), fullBass, fullSnare);
+        BeatResalt(checkBeatRandom(randomBeat), fullSnare, fullBass);
     else 
-        BeatResalt(randomBeat, fullBass, fullSnare);
+        BeatResalt(randomBeat, fullSnare, fullBass);
      
 }
 function easyBeats() {
@@ -101,7 +101,7 @@ function easyBeats() {
 
     return all[randomIndex];
 }
-function BeatResalt(checkedArr, randBass, randSnare) {
+function BeatResalt(checkedArr, randSnare, randBass) {
     for (let i = 0; i < checkedArr.length; i++) {
         if (checkedArr[i] == 1) {
             randSnare[i].style.visibility = "hidden";
