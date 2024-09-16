@@ -60,18 +60,29 @@ aside {
     overflow: visible;
 }
 button {
-    position: absolute; 
-    top: 125px;
+    position: absolute;     
     left: 570px;
     width: 150px; 
-    height: 70px;
+    height: 65px;
     border: 1px solid gray;
     background-color: #f1c40f;
     color: #fff;
     cursor: pointer;
     font-size: 25px;
+    margin: 10px;
 }
-
+.beginner{
+    top: 110px;
+}
+.advance{
+    top: 185px;
+}
+.Expert{
+    top: 260px;
+}
+.clear{
+    top: 340px;
+}
 button:hover {
     background-color: #f39c12;
 }
