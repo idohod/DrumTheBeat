@@ -171,7 +171,14 @@ footer div {
     margin-bottom: 20px; 
 }
 
-.HH, .Snare, .Bass {
+#Tom1container,#Tom2container, #Snare1Container, #FloorContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; 
+    margin-bottom: -20px; 
+}
+
+.HH, .Snare, .Bass ,.Tom1 ,.Tom2,.Snare1,.floor {
     font-size: 20px; 
     padding: 10px; 
     width:37px; 
@@ -190,3 +197,21 @@ footer div {
 #BassContainer .Bass {
     margin-top:-22px; 
 }
+
+
+#Tom1container .Tom1 {
+    margin-top: -5px; 
+}
+
+#Tom2container .Tom2 {
+    margin-top: -16px; 
+}
+
+#Snare1Container .Snare1 {
+    margin-top: -14px; 
+}
+
+#FloorContainer .floor {
+    margin-top: -5px; 
+}
+
