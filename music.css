@@ -1,51 +1,43 @@
-.music-sheet {
-    position: relative;
-    width: calc(100% - 30px); 
-    padding: 7px;
-    margin: 15px;
-    background-color: #ffffff2b;
-    height: 100px;
-}
-
-.music-sheet {
-    margin: 10px; 
-}
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/*nav*/
 nav {
-    background-color: #333;
-    color: white;
+    background: linear-gradient(90deg, gray, #3c3a3a);
+    color: rgb(19, 19, 138);
     padding: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     text-align: center;
+    width: 98.6%;
+
 }
 
 nav h1 {
     margin: 0;
     font-size: 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
 }
 
 nav div {
     margin-top: 5px;
     font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
 }
 
+/*main page*/
 
-main {
-    padding: 20px;
+body {
+    font-family:' Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+
 }
-
 
 table {
     width: 100%;
     border-collapse: collapse;
 }
-
 
 td {
     vertical-align: top; 
@@ -59,54 +51,20 @@ aside {
     align-items: center; 
     overflow: visible;
 }
-button {
-    position: absolute;     
-    left: 570px;
-    width: 150px; 
-    height: 65px;
-    border: 1px solid gray;
-    background-color: #f1c40f;
-    color: #fff;
-    cursor: pointer;
-    font-size: 25px;
-    margin: 10px;
-}
-.beginner{
-    top: 110px;
-}
-.advance{
-    top: 185px;
-}
-.Expert{
-    top: 260px;
-}
-.clear{
-    top: 340px;
-}
-button:hover {
-    background-color: #f39c12;
+main {
+    padding: 20px;
+
 }
 
-footer {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    text-align: center;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
+/*music sheet*/
 
-footer p {
-    margin: 0;
-}
+.music-sheet {
+    position: relative;
+    width: calc(100% - 30px); 
+    padding: 7px;
+    margin: 15px;
+    height: 100px;
 
-footer div {
-    margin-top: 5px;
-}
-
-#email {
-    font-weight: bold;
 }
 
 .staff {
@@ -157,24 +115,6 @@ footer div {
     cursor: pointer;
 }
 
-#email {
-    text-decoration: underline;
-    color: blue;
-    cursor: pointer;
-}
-
-#gitarImg , #drumsImg ,#playDrumsImg{
-
-    height: 200px;
-    width: 200px;
-    margin-top: -20px;
-    margin-left :200px;
-    background-color: #fff;
-}
-#gitarImg:hover, #drumsImg:hover, #playDrumsImg:hover {
-    transform: scale(1.1);
-}
-
 #HHcontainer, #SnareContainer, #BassContainer {
     display: flex;
     flex-wrap: wrap;
@@ -209,7 +149,6 @@ footer div {
     margin-top:-22px; 
 }
 
-
 #Tom1container .Tom1 {
     margin-top: -5px; 
 }
@@ -224,5 +163,85 @@ footer div {
 
 #FloorContainer .floor {
     margin-top: -5px; 
+}
+
+/*buttons*/
+
+button {
+    position: absolute;     
+    left: 573px;
+    width: 150px; 
+    height: 65px;
+    border: 1px solid gray;
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+    font-size: 25px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+
+}
+.beginner{
+    top: 110px;
+}
+.advance{
+    top: 185px;
+}
+.Expert{
+    top: 260px;
+}
+.clear{
+    top: 335px;
+}
+button:hover {
+    background-color: #2980b9;
+}
+
+/*images*/
+
+#gitarImg , #drumsImg ,#playDrumsImg{
+
+    height: 220px;
+    width: 250px;
+    margin-top: -45px;
+    margin-left :150px;
+    background-color: #fff;
+}
+#gitarImg:hover, #drumsImg:hover, #playDrumsImg:hover {
+    transform: scale(1.05);
+}
+
+/*fotter*/
+
+footer {
+    background: linear-gradient(90deg, gray, #3c3a3a);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 98.6%;
+
+}
+
+footer p {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+
+}
+
+footer div {
+    margin-top: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+#email {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+    font-weight: bold;
 }
 
