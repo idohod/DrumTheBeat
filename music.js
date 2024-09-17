@@ -1,5 +1,19 @@
 const SIZE = 16;
 
+
+
+const HHElement = document.getElementById("HHAudio");
+const SnareElement = document.getElementById("SnareAudio");
+const BassElement = document.getElementById("BassAudio");
+
+const volumes = {
+    hhVolume: 0.5,    // 70% volume for Hi-Hat
+    snareVolume: 0.5, // 80% volume for Snare
+    bassVolume: 1.0   // 60% volume for Bass
+};
+
+
+
 // Generate all parts 
 
 function generate(id, name, text) {
@@ -15,42 +29,105 @@ function generate(id, name, text) {
     return container.children;
 }
 
-function genBegginer(){
+function genBegginer() {
 
     var fullTom1 = generate('Tom1container', 'Tom1', 'T1');
     var fullTom2 = generate('Tom2container', 'Tom2', 'T2');
     var fullSnare1 = generate('Snare1Container', 'Snare1', 'S');
-    var fullFloor = generate('FloorContainer', 'floor', 'F'); 
+    var fullFloor = generate('FloorContainer', 'floor', 'F');
 
-    return [fullTom1,fullTom2,fullSnare1,fullFloor];
+    return [fullTom1, fullTom2, fullSnare1, fullFloor];
 }
 
-function genAdvanceOrExpert(){
+function genAdvanceOrExpert() {
     var fullTom1 = generate('Tom1container', 'Tom1', 'O');
     var fullTom2 = generate('Tom2container', 'Tom2', 'O');
     var fullSnare1 = generate('Snare1Container', 'Snare1', 'O');
-    var fullFloor = generate('FloorContainer', 'floor', 'O'); 
+    var fullFloor = generate('FloorContainer', 'floor', 'O');
 
-    return [fullTom1,fullTom2,fullSnare1,fullFloor];
+    return [fullTom1, fullTom2, fullSnare1, fullFloor];
 
 }
 
-function genBeat(){
+function genBeat() {
 
     var fullHH = generate('HHcontainer', 'HH', 'X');
     var fullSnare = generate('SnareContainer', 'Snare', 'O');
     var fullBass = generate('BassContainer', 'Bass', 'O');
 
-    return [fullHH,fullSnare,fullBass];
+    return [fullHH, fullSnare, fullBass];
 }
 
 // beats
+function playBeatPattern(beatPattern, interval, level) {
+    let i = 0;
+    //  let temp = BPM/60;
+    //let interval = 1000/temp; // Play HH every second (1000ms)
+
+
+    HHElement.volume = volumes.hhVolume;
+    SnareElement.volume = volumes.snareVolume;
+    BassElement.volume = volumes.bassVolume;
+
+    // Play the Hi-Hat, Snare, and Bass together based on the beat pattern
+    const playNextBeat = () => {
+        HHElement.currentTime = 0; // Reset hi-hat to the start
+        if (level == "beginner") {
+            if (i % 2 == 0) {                
+                HHElement.play(); // Play hi-hat every second
+            }
+            else{
+                HHElement.pause();
+            }
+        }
+        else{
+            HHElement.play();
+        }
+        // Check for snare hit
+        if (beatPattern[i] === 2) {
+            SnareElement.currentTime = 0;
+            SnareElement.play(); // Play Snare
+            BassElement.pause();  // Ensure Bass is paused if Snare plays
+        }
+        // Check for bass hit
+        else if (beatPattern[i] === 1) {
+            BassElement.currentTime = 0;
+            BassElement.play(); // Play Bass
+            SnareElement.pause(); // Ensure Snare is paused if Bass plays
+        }
+        // If no snare or bass hit, just play Hi-Hat
+        else {
+            SnareElement.pause();
+            BassElement.pause();
+        }
+
+        // Increment to the next beat
+        i++;
+        // Check if the pattern has reached its end and stop all elements
+        if (i > beatPattern.length) {
+            clearInterval(beatInterval); // Stop the interval
+            HHElement.pause();
+            SnareElement.pause();
+            BassElement.pause();
+            //i = 0; // Reset to the beginning if needed
+        }
+    };
+
+    // Set interval to play HH every second and check for snare or bass
+    const beatInterval = setInterval(playNextBeat, interval);
+}
+
+
 
 function setHHVis(fullHH, level) {
-    if (level == "beginner")
-        HH8(fullHH)
-    else
-        HH16(fullHH)
+    if (level == "beginner") {
+        HH8(fullHH);
+
+    }
+    else {
+        HH16(fullHH);
+    }
+
 }
 
 function HH8(fullHH) {
@@ -67,18 +144,26 @@ function HH16(fullHH) {
 }
 
 // Show or hide all beats
-function BeatVisibility(fullHH, fullSnare,  fullBass, level) {
+function BeatVisibility(fullHH, fullSnare, fullBass, level) {
     var randomBeat = randBeat(level);
-    if (level == "beginner"){
+    if (level == "beginner") {
         var res = easyBeats();
         BeatResalt(res, fullSnare, fullBass);
+        playBeatPattern(res, 400,level)
+
     }
-    else if (level == "advance")
-        BeatResalt(checkBeatRandom(randomBeat), fullSnare, fullBass);
-    else 
+    else if (level == "advance") {
+        var resBeat = checkBeatRandom(randomBeat);
+        BeatResalt(resBeat, fullSnare, fullBass);
+        playBeatPattern(resBeat,level);
+    }
+    else {
         BeatResalt(randomBeat, fullSnare, fullBass);
-     
+        playBeatPattern(randomBeat, 500,level)
+    }
 }
+
+
 function easyBeats() {
     var b1 = [1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0];
     var b2 = [1, 0, 1, 0, 2, 0, 0, 0, 1, 0, 1, 0, 2, 0, 0, 0];
@@ -102,7 +187,7 @@ function easyBeats() {
     return all[randomIndex];
 }
 function BeatResalt(checkedArr, randSnare, randBass) {
-    for (let i = 0; i < checkedArr.length; i++) {
+    for (let i = 0; i < SIZE; i++) {
         if (checkedArr[i] == 1) {
             randSnare[i].style.visibility = "hidden";
             randBass[i].style.visibility = "visible";
@@ -118,19 +203,19 @@ function BeatResalt(checkedArr, randSnare, randBass) {
 // Generate random beats
 function randBeat(level) {
 
-    if (level == "Expert") 
-        return randExpert();   
-    return randAdvance();   
+    if (level == "Expert")
+        return randExpert();
+    return randAdvance();
 }
 
-function randExpert(){
+function randExpert() {
     var randArray = [];
     for (let i = 0; i < SIZE; i++)
         randArray[i] = Math.floor(Math.random() * 3);
     return randArray;
 }
 
-function randAdvance(){
+function randAdvance() {
     var randArray = [];
     for (let i = 0; i < SIZE; i++) {
         if (i == 0 || i == 8) {
@@ -302,23 +387,23 @@ document.querySelector(".Expert").addEventListener('click', function () {
 document.querySelector(".clear").addEventListener('click', function () {
 
     var tmp = genBeat();
-    for(i=0;i<tmp.length;i++)
+    for (i = 0; i < tmp.length; i++)
         hideAll(tmp[i]);
 
 
     var temp = genAdvanceOrExpert();
-    for(i=0;i<temp.length;i++)
+    for (i = 0; i < temp.length; i++)
         hideAll(temp[i]);
-   
+
 });
 //"MAIN"
 function difficlty(level) {
-   
-    if(level == "beginner")
-        var allFill = genBegginer(); 
+
+    if (level == "beginner")
+        var allFill = genBegginer();
     else
-       var allFill =genAdvanceOrExpert();
-    
+        var allFill = genAdvanceOrExpert();
+
     var allBeat = genBeat();
     setHHVis(allBeat[0], level);
     BeatVisibility(allBeat[0], allBeat[1], allBeat[2], level);

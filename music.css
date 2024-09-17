@@ -202,6 +202,10 @@ button {
 button:hover {
     background-color: #2980b9;
 }
+.play{
+
+    top: 350px;
+}
 
 /*images*/
 
