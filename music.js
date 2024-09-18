@@ -62,72 +62,53 @@ function genBeat() {
 function playBeatPattern(beatPattern, interval, level) {
     let i = 0;
     //  let temp = BPM/60;
-    //let interval = 1000/temp; // Play HH every second (1000ms)
-
-
+    //let interval = 1000/temp; 
     HHElement.volume = volumes.hhVolume;
     SnareElement.volume = volumes.snareVolume;
     BassElement.volume = volumes.bassVolume;
-
     // Play the Hi-Hat, Snare, and Bass together based on the beat pattern
     const playNextBeat = () => {
         HHElement.currentTime = 0; // Reset hi-hat to the start
         if (level == "beginner") {
-            if (i % 2 == 0) {                
-                HHElement.play(); // Play hi-hat every second
-            }
-            else{
+            if (i % 2 == 0)
+                HHElement.play(); // Play hi-hat every second            
+            else
                 HHElement.pause();
-            }
         }
-        else{
+        else
             HHElement.play();
-        }
+
         // Check for snare hit
         if (beatPattern[i] === 2) {
             SnareElement.currentTime = 0;
-            SnareElement.play(); // Play Snare
-            BassElement.pause();  // Ensure Bass is paused if Snare plays
+            SnareElement.play(); 
+            BassElement.pause();  
         }
         // Check for bass hit
         else if (beatPattern[i] === 1) {
             BassElement.currentTime = 0;
-            BassElement.play(); // Play Bass
-            SnareElement.pause(); // Ensure Snare is paused if Bass plays
+            BassElement.play(); 
+            SnareElement.pause();
         }
-        // If no snare or bass hit, just play Hi-Hat
         else {
             SnareElement.pause();
             BassElement.pause();
-        }
-
-        // Increment to the next beat
-        i++;
-        // Check if the pattern has reached its end and stop all elements
+        }    
+        i++;        
         if (i > beatPattern.length) {
             clearInterval(beatInterval); // Stop the interval
             HHElement.pause();
             SnareElement.pause();
             BassElement.pause();
-            //i = 0; // Reset to the beginning if needed
         }
     };
-
-    // Set interval to play HH every second and check for snare or bass
     const beatInterval = setInterval(playNextBeat, interval);
 }
-
-
-
 function setHHVis(fullHH, level) {
-    if (level == "beginner") {
+    if (level == "beginner")
         HH8(fullHH);
-
-    }
-    else {
+    else
         HH16(fullHH);
-    }
-
 }
 
 function HH8(fullHH) {
@@ -144,22 +125,22 @@ function HH16(fullHH) {
 }
 
 // Show or hide all beats
-function BeatVisibility(fullHH, fullSnare, fullBass, level) {
+function BeatVisibility(fullSnare, fullBass, level) {
     var randomBeat = randBeat(level);
     if (level == "beginner") {
         var res = easyBeats();
         BeatResalt(res, fullSnare, fullBass);
-        playBeatPattern(res, 400,level)
+        playBeatPattern(res, 400, level)
 
     }
     else if (level == "advance") {
         var resBeat = checkBeatRandom(randomBeat);
         BeatResalt(resBeat, fullSnare, fullBass);
-        playBeatPattern(resBeat,level);
+        playBeatPattern(resBeat, 500, level);
     }
     else {
         BeatResalt(randomBeat, fullSnare, fullBass);
-        playBeatPattern(randomBeat, 500,level)
+        playBeatPattern(randomBeat, 500, level)
     }
 }
 
@@ -406,6 +387,6 @@ function difficlty(level) {
 
     var allBeat = genBeat();
     setHHVis(allBeat[0], level);
-    BeatVisibility(allBeat[0], allBeat[1], allBeat[2], level);
+    BeatVisibility(allBeat[1], allBeat[2], level);
     setFill(allFill[0], allFill[1], allFill[2], allFill[3], level);
 }
