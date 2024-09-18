@@ -20,22 +20,22 @@ function hideAll(arr) {
 }
 
 
-document.querySelector(".beginner").addEventListener('click', function () {
+document.getElementById("beginner").addEventListener('click', function () {
 
     difficlty("beginner");
 });
 
-document.querySelector(".advance").addEventListener('click', function () {
+document.getElementById("advance").addEventListener('click', function () {
 
     difficlty("advance");
 });
 
-document.querySelector(".Expert").addEventListener('click', function () {
+document.getElementById("expert").addEventListener('click', function () {
 
     difficlty("Expert");
 });
 
-document.querySelector(".clear").addEventListener('click', function () {
+document.getElementById("clear").addEventListener('click', function () {
 
     var tmp = genBeat();
     for (i = 0; i < tmp.length; i++)

@@ -6,7 +6,7 @@ nav {
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     text-align: center;
     width: 98.6%;
-    margin-bottom: -40px;
+    margin-bottom: 0px;
 
 }
 
@@ -172,9 +172,25 @@ main {
 
 /*buttons*/
 
-button {
+#spanBPM{
+
     position: absolute;     
-    left: -700px;
+    width: 50%; 
+    height: 80px;
+    left:20%;
+    margin-top: -25px;
+   
+    font-size: 30px;
+}
+#BPM{
+    height: 30px;
+    width: 200px;
+    font-size: 30px;
+}
+
+button.musicStyle {
+    position: absolute;     
+    left: -20px;
     width: 150px; 
     height: 65px;
     border: 1px solid gray;
@@ -187,16 +203,29 @@ button {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 
 }
-.beginner{
+.play{
+    height: 40px;
+    width: 80px;
+    border: 1px solid gray;
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 5px;
+
+
+}
+
+#beginner{
     top: 30px;
 }
-.advance{
+#advance{
     top: 105px;
 }
-.Expert{
+#expert{
     top: 180px;
 }
-.clear{
+#clear{
     top: 255px;
 }
 button:hover {
@@ -211,9 +240,9 @@ button:hover {
 
 #gitarImg , #drumsImg ,#playDrumsImg{
 
-    height: 220px;
-    width: 250px;
-    margin-top: -45px;
+    height: 150px;
+    width: 200px;
+    margin-top: 0px;
     margin-left :200px;
     background-color: #fff;
 }

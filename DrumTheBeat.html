@@ -20,15 +20,20 @@
                 <tr>
                     <td rowspan="3" width="10%"></td>
                         <aside>
-                            <button class="beginner" id="musicStyle" type="submit">Beginner</button>
-                            <button class="advance" id="musicStyle" type="submit">Advance</button>
-                            <button class="Expert" id="musicStyle" type="submit">Expert</button>
-                            <button class="clear" id="musicStyle" type="submit">Clear</button>                         
+                            <button class="musicStyle" id="beginner" type="submit">Beginner</button>
+                            <button class="musicStyle" id="advance" type="submit">Advance</button>
+                            <button class="musicStyle" id="expert" type="submit">Expert</button>
+                            <button class="musicStyle" id="clear" type="submit">Clear</button>                         
 
                             <audio id="HHAudio" src="audios/HH.mp3"></audio>
                             <audio id="SnareAudio" src="audios/Snare.mp3"></audio>
                             <audio id="BassAudio" src="audios/Bass.mp3"></audio>
 
+                            <span id="spanBPM">
+                                <label for="BPM">BPM:</label>
+                                <input type="number"  id="BPM" required="required" placeholder="YourBPM">
+                                <button class="play" id="BPM2" type="play">Plat</button>
+                            </span>
 
     
                             

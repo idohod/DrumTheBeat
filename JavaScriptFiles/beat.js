@@ -1,8 +1,4 @@
 
-
-// beats
-
-
 function genBeat() {
 
     var fullHH = generate('HHcontainer', 'HH', 'X');
@@ -12,10 +8,10 @@ function genBeat() {
     return [fullHH, fullSnare, fullBass];
 }
 function setHHVis(fullHH, level) {
-    if (level == "beginner")
-        HH8(fullHH);
-    else
+    if (level == "Expert")
         HH16(fullHH);
+    else
+        HH8(fullHH);
 }
 
 function HH8(fullHH) {
@@ -36,18 +32,22 @@ function BeatVisibility(fullSnare, fullBass, level) {
     var randomBeat = randBeat(level);
     if (level == "beginner") {
         var res = easyBeats();
+        var tempo = getBMP()/4;
+        console.log(tempo);
         BeatResalt(res, fullSnare, fullBass);
-        playBeatPattern(res, 400, level)
+        playBeatPattern(res, tempo, level)
 
     }
     else if (level == "advance") {
+        var tempo = getBMP()/2;
         var resBeat = checkBeatRandom(randomBeat);
         BeatResalt(resBeat, fullSnare, fullBass);
-        playBeatPattern(resBeat, 500, level);
+        playBeatPattern(resBeat,tempo, level);
     }
     else {
+        var tempo = getBMP()/4;
         BeatResalt(randomBeat, fullSnare, fullBass);
-        playBeatPattern(randomBeat, 500, level)
+        playBeatPattern(randomBeat, tempo, level)
     }
 }
 
