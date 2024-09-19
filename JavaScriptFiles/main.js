@@ -1,4 +1,6 @@
 const SIZE = 16;
+var flag ;
+var level;
 
 
 function generate(id, name, text) {
@@ -18,37 +20,56 @@ function hideAll(arr) {
         element.style.visibility = "hidden";
     });
 }
+document.querySelector(".play").addEventListener('click', function () {
+
+    if (randomBeat == null || easyBeat == null) {
+        alert("null");
+        return;
+    }
+
+   
+    difficlty(level,true);
+
+});
 
 
 document.getElementById("beginner").addEventListener('click', function () {
+    level = "beginner";
 
-    difficlty("beginner");
+    difficlty(level,false);
+
 });
 
 document.getElementById("advance").addEventListener('click', function () {
+    level = "advance";
 
-    difficlty("advance");
+    difficlty(level,false);
+
 });
 
 document.getElementById("expert").addEventListener('click', function () {
+    level = "Expert";
 
-    difficlty("Expert");
+    difficlty(level,false);
+
 });
 
-document.getElementById("clear").addEventListener('click', function () {
+document.getElementById("clear").addEventListener('click', function () {    
 
     var tmp = genBeat();
     for (i = 0; i < tmp.length; i++)
         hideAll(tmp[i]);
 
-
     var temp = genAdvanceOrExpert();
     for (i = 0; i < temp.length; i++)
         hideAll(temp[i]);
+});     
 
-});
 //"MAIN"
-function difficlty(level) {
+function difficlty(level,flag) {
+    var BPM = getBMP();
+    if (BPM == 0)
+        return;
 
     if (level == "beginner")
         var allFill = genBegginer();
@@ -57,6 +78,6 @@ function difficlty(level) {
 
     var allBeat = genBeat();
     setHHVis(allBeat[0], level);
-    BeatVisibility(allBeat[1], allBeat[2], level);
+    BeatVisibility(allBeat[1], allBeat[2], level,flag);
     setFill(allFill[0], allFill[1], allFill[2], allFill[3], level);
 }

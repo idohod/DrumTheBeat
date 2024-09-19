@@ -204,6 +204,7 @@ button.musicStyle {
 
 }
 .play{
+    box-sizing: border-box;
     height: 40px;
     width: 80px;
     border: 1px solid gray;

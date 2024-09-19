@@ -1,3 +1,5 @@
+var randomBeat;
+var easyBeat;
 
 function genBeat() {
 
@@ -27,25 +29,44 @@ function HH16(fullHH) {
         fullHH[i].style.visibility = "visible";
 }
 
+function playAgain(res, tempo, level, flag) {
+
+    if (flag)
+        playBeatPattern(res, tempo, level);
+};
+
 // Show or hide all beats
-function BeatVisibility(fullSnare, fullBass, level) {
-    var randomBeat = randBeat(level);
+function BeatVisibility(fullSnare, fullBass, level, flag) {
+
+    var BPM = getBMP();
+
+    if (!flag) {
+        randomBeat = randBeat(level);
+        easyBeat = easyBeats();
+    }
+
+    
+
     if (level == "beginner") {
-        var res = easyBeats();
-        var tempo = getBMP()/4;
-        console.log(tempo);
-        BeatResalt(res, fullSnare, fullBass);
-        playBeatPattern(res, tempo, level)
+
+        var tempo = BPM / 4;
+
+        BeatResalt(easyBeat, fullSnare, fullBass);
+        playBeatPattern(easyBeat, tempo, level);
+
+        playAgain(easyBeat, tempo, level, flag);
+
 
     }
     else if (level == "advance") {
-        var tempo = getBMP()/2;
+        var tempo = BPM / 4;
+
         var resBeat = checkBeatRandom(randomBeat);
         BeatResalt(resBeat, fullSnare, fullBass);
-        playBeatPattern(resBeat,tempo, level);
+        playBeatPattern(resBeat, tempo, level);
     }
     else {
-        var tempo = getBMP()/4;
+        var tempo = BPM / 4;
         BeatResalt(randomBeat, fullSnare, fullBass);
         playBeatPattern(randomBeat, tempo, level)
     }
@@ -128,10 +149,17 @@ function checkBeatRandom(randArray) {
                 randArray[i + 2] = 0;
             }
         }
-
-        if (randArray[SIZE - 2] == randArray[SIZE - 1] && randArray[SIZE - 2] == randArray[0]) {
-            randArray[SIZE - 1] = 0;
-        }
     }
+
+    if (randArray[SIZE - 2] == randArray[SIZE - 1] && randArray[SIZE - 2] == randArray[0]) {
+        randArray[SIZE - 1] = 0;
+    }
+
+    else if (randArray[SIZE - 1] == randArray[0] && randArray[1] == randArray[0]) {
+        randArray[1] = 0;
+    }
+
+
+
     return randArray;
 }
