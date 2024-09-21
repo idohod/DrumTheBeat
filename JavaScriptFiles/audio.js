@@ -4,7 +4,15 @@ const BassElement = document.getElementById("BassAudio");
 const Tom1Element = document.getElementById("Tom1Audio");
 const Tom2Element = document.getElementById("Tom2Audio");
 const FloorElement = document.getElementById("FloorAudio");
+const CrashElement = document.getElementById("CrashAudio");
 
+var errorrMassage = document.getElementById("errorMassage");
+
+var stillPlaying;
+var toPauseAll;
+
+var beatInterval;
+var fillInterval;
 
 const volumes = {
     hhVolume: 0.1,
@@ -12,7 +20,8 @@ const volumes = {
     bassVolume: 1.0,
     FloorVolume: 0.7,
     tom1Volume: 0.7,
-    tom2Volume: 0.7
+    tom2Volume: 0.7,
+    crashVolume: 1.0
 };
 
 
@@ -21,40 +30,45 @@ function getBMP() {
     const input = document.getElementById("BPM");
     var value = Number(input.value);
 
-    if (value > 0)
+    if (value > 0) {
+        errorrMassage.innerHTML = ""
         return 60000 / value;
+    }
 
     else {
-        alert("must enter BPM");
+        errorrMassage.innerHTML = "must enter BPM!"
         return 0;
     }
 
 }
 
-function playBeatPattern(beatPattern, interval, level,allFill) {
+function playBeatPattern(beatPattern, interval, level, allFill) {
     let i = 0;
-
+    stillPlaying = true;
+    console.log(beatPattern);
     HHElement.volume = volumes.hhVolume;
     SnareElement.volume = volumes.snareVolume;
     BassElement.volume = volumes.bassVolume;
 
     const playNextBeat = () => {
 
-        HHaudio(i, level);
-        BassAndSnareAudio(i, beatPattern);
-        i++;
-
-        if (i > beatPattern.length) {
+        if (i == SIZE) {
             clearInterval(beatInterval);
             HHElement.pause();
             SnareElement.pause();
             BassElement.pause();
-            playFillPattern(allFill,interval);
+            playFillPattern(allFill, interval);
         }
+        CrashElement.pause();
+        CrashElement.currentTime = 0;
+
+        HHaudio(i, level);
+        BassAndSnareAudio(i, beatPattern);
+        i++;
 
     };
 
-    const beatInterval = setInterval(playNextBeat, interval);
+    beatInterval = setInterval(playNextBeat, interval);
 }
 
 
@@ -91,6 +105,13 @@ function BassAndSnareAudio(i, beatPattern) {
     }
 }
 
+function ClearPattern(fillPattern) {
+
+    fillPattern.forEach(element => {
+        element = 0;
+    });
+}
+
 function playFillPattern(fillPattern, interval) {
     let i = 0;
 
@@ -98,23 +119,31 @@ function playFillPattern(fillPattern, interval) {
     SnareElement.volume = volumes.snareVolume;
     Tom1Element.volume = volumes.tom1Volume;
     Tom2Element.volume = volumes.tom2Volume;
+    CrashElement.volume = volumes.crashVolume;
 
     const playNextFill = () => {
+        console.log(i);
+        if (i < SIZE) {
+            CrashElement.pause();
+            CrashElement.currentTime = 0;
 
-        playTheFill(fillPattern, i);
-        i++;
-
-        if (i > fillPattern.length) {
+        }
+        if (i == SIZE) {
+            console.log("if");
+            CrashElement.play();
             clearInterval(fillInterval);
             FloorElement.pause();
             SnareElement.pause();
             Tom1Element.pause();
             Tom2Element.pause();
+            stillPlaying = false;
         }
+        playTheFill(fillPattern, i);
+        i++;
 
     };
 
-    const fillInterval = setInterval(playNextFill, interval);
+    fillInterval = setInterval(playNextFill, interval);
 }
 
 function playTheFill(fillPattern, i) {
@@ -146,10 +175,20 @@ function playTheFill(fillPattern, i) {
         Tom2Element.pause();
         FloorElement.play();
         SnareElement.pause();
-    } else if (fillPattern[i] === 0) {
+    } else {
         Tom1Element.pause();
         Tom2Element.pause();
         FloorElement.pause();
         SnareElement.pause();
     }
+}
+function pauseAll() {
+
+    HHElement.pause();
+    SnareElement.pause();
+    BassElement.pause();
+    FloorElement.pause();
+    Tom1Element.pause();
+    Tom2Element.pause();
+
 }

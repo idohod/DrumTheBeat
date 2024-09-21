@@ -24,12 +24,12 @@
                             <button class="musicStyle" id="advance" type="submit">Advance</button>
                             <button class="musicStyle" id="expert" type="submit">Expert</button>
                             <button class="musicStyle" id="clear" type="submit">Clear</button>                         
-
+                            <button class="musicStyle" id="playAgain" type="submit">Play Again</button>
                             
                             <span id="spanBPM">
                                 <label for="BPM">BPM:</label>
-                                <input type="number"  id="BPM" required="required" placeholder="YourBPM">
-                                <button class="play" id="BPM2" type="play">Play</button>
+                                <input type="number"  id="BPM" required="required" placeholder="YourBPM">    
+                                <span id="errorMassage">Enter BPM and choose Level</span>                            
                             </span>
 
     
@@ -232,6 +232,8 @@
     <audio id="Tom1Audio" src="audios/high-tom_120bpm_C_major.wav"></audio>
     <audio id="Tom2Audio" src="audios/low-tom_E_minor.wav"></audio>
     <audio id="FloorAudio" src="audios/floor-tom.mp3"></audio>
+    <audio id="CrashAudio" src="audios/crash1.mp3"></audio>
+
 
     <script src="JavaScriptFiles/main.js"></script>
     <script src="JavaScriptFiles/audio.js"></script>

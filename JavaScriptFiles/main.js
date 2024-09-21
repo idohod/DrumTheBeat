@@ -2,7 +2,6 @@ const SIZE = 16;
 var flag;
 var level;
 
-
 function generate(id, name, text) {
     const container = document.getElementById(id);
     container.innerHTML = '';
@@ -20,37 +19,45 @@ function hideAll(arr) {
         element.style.visibility = "hidden";
     });
 }
-document.querySelector(".play").addEventListener('click', function () {
+document.getElementById("playAgain").addEventListener('click', function () {
+    toPauseAll = false;
+
 
     if (randomBeat == null || easyBeat == null) {
-        alert("null");
+        errorrMassage.innerHTML = "must enter BPM and chose level first!";
         return;
     }
-
-
-    difficlty(level, true);
+    else
+        errorrMassage.innerHTML = ''
+    if (!stillPlaying)
+        difficlty(level, true);
 
 });
 
 
 document.getElementById("beginner").addEventListener('click', function () {
     level = "beginner";
+    toPauseAll = false;
 
-    difficlty(level, false);
+    if (!stillPlaying)
+        difficlty(level, false);
 
 });
 
 document.getElementById("advance").addEventListener('click', function () {
     level = "advance";
+    toPauseAll = false;
 
-    difficlty(level, false);
-
+    if (!stillPlaying)
+        difficlty(level, false);
 });
 
 document.getElementById("expert").addEventListener('click', function () {
     level = "Expert";
+    toPauseAll = false;
 
-    difficlty(level, false);
+    if (!stillPlaying)
+        difficlty(level, false);
 
 });
 
@@ -63,10 +70,21 @@ document.getElementById("clear").addEventListener('click', function () {
     var temp = genAdvanceOrExpert();
     for (i = 0; i < temp.length; i++)
         hideAll(temp[i]);
+
+    toPauseAll = true;
+    stillPlaying = false;
+
+    clearInterval(beatInterval);
+    clearInterval(fillInterval);
+
+
 });
+
+
 
 //"MAIN"
 function difficlty(level, flag) {
+
     var BPM = getBMP();
     if (BPM == 0)
         return;
@@ -76,7 +94,7 @@ function difficlty(level, flag) {
     else
         var allFill = genAdvanceOrExpert();
 
-    var theFill = setFill(allFill[0], allFill[1], allFill[2], allFill[3], level,flag);
+    var theFill = setFill(allFill[0], allFill[1], allFill[2], allFill[3], level, flag);
 
     var allBeat = genBeat();
     setHHVis(allBeat[0], level);
