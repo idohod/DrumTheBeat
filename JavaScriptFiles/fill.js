@@ -1,3 +1,8 @@
+var easyFill;
+var advanceFill;
+var expertFill;
+
+
 function genBegginer() {
 
     var fullTom1 = generate('Tom1container', 'Tom1', 'T1');
@@ -19,15 +24,33 @@ function genAdvanceOrExpert() {
 }
 
 
+function setFill(fullTom1, fullTom2, fullSnare1, fullFloor, level,flag) {
 
-function setFill(fullTom1, fullTom2, fullSnare1, fullFloor, level) {
+    if (!flag) {
+        easyFill = easyFills();
+        advanceFill = advanceFills();
+        expertFill = randFill();
+    }
+    console.log(flag);
+    console.log(easyFill);
 
-    if (level == "beginner")
-        FillResalt(easyFills(), fullTom1, fullTom2, fullSnare1, fullFloor);
-    else if (level == "advance")
-        FillResalt(advanceFills(), fullTom1, fullTom2, fullSnare1, fullFloor);
-    else
-        FillResalt(randFill(), fullTom1, fullTom2, fullSnare1, fullFloor);
+
+
+
+    if (level == "beginner") {
+        FillResalt(easyFill, fullTom1, fullTom2, fullSnare1, fullFloor);
+        return easyFill;
+    }
+    else if (level == "advance") {
+
+        FillResalt(advanceFill, fullTom1, fullTom2, fullSnare1, fullFloor);
+        return advanceFill;
+    }
+    else {
+
+        FillResalt(expertFill, fullTom1, fullTom2, fullSnare1, fullFloor);
+        return expertFill;
+    }
 }
 
 function easyFills() {

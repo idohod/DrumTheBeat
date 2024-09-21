@@ -29,14 +29,15 @@ function HH16(fullHH) {
         fullHH[i].style.visibility = "visible";
 }
 
-function playAgain(res, tempo, level, flag) {
+function playAgain(res, tempo, level, flag,allFill) {
 
     if (flag)
-        playBeatPattern(res, tempo, level);
+        playBeatPattern(res, tempo, level,allFill);
 };
 
+
 // Show or hide all beats
-function BeatVisibility(fullSnare, fullBass, level, flag) {
+function BeatVisibility(fullSnare, fullBass, level, flag ,allFill) {
 
     var BPM = getBMP();
 
@@ -45,30 +46,31 @@ function BeatVisibility(fullSnare, fullBass, level, flag) {
         easyBeat = easyBeats();
     }
 
-    
+
 
     if (level == "beginner") {
 
         var tempo = BPM / 4;
 
         BeatResalt(easyBeat, fullSnare, fullBass);
-        playBeatPattern(easyBeat, tempo, level);
+        playBeatPattern(easyBeat, tempo, level,allFill);
 
-        playAgain(easyBeat, tempo, level, flag);
+      //  playAgain(easyBeat, tempo, level, flag,allFill);
 
 
     }
     else if (level == "advance") {
         var tempo = BPM / 4;
 
-        var resBeat = checkBeatRandom(randomBeat);
+        var resBeat = checkBeatRandom(randomBeat,level);
         BeatResalt(resBeat, fullSnare, fullBass);
-        playBeatPattern(resBeat, tempo, level);
+        playBeatPattern(resBeat, tempo, level,allFill);
     }
     else {
         var tempo = BPM / 4;
-        BeatResalt(randomBeat, fullSnare, fullBass);
-        playBeatPattern(randomBeat, tempo, level)
+        var exBeat = checkBeatRandom(randomBeat,level);
+        BeatResalt(exBeat, fullSnare, fullBass);
+        playBeatPattern(randomBeat, tempo, level,allFill);
     }
 }
 
@@ -139,18 +141,27 @@ function randAdvance() {
 }
 
 // Prevent too many repetitions
-function checkBeatRandom(randArray) {
+function checkBeatRandom(randArray, level) {
     let stackNums = [4, 8, 12];
     for (let i = 0; i < SIZE - 2; i++) {
         if (randArray[i] == randArray[i + 1] && randArray[i + 1] == randArray[i + 2]) {
-            if (stackNums.includes(i + 2)) {
-                randArray[i] = 0;
-            } else {
-                randArray[i + 2] = 0;
+            if (level == "advance") {
+                if (stackNums.includes(i + 2)) {
+                    randArray[i] = 0;
+                } else {
+                    randArray[i + 2] = 0;
+                }
             }
+            else
+                randArray[i + 2] = 0;
         }
     }
+    if (level == "advance")
+        stam(randArray)
 
+    return randArray;
+}
+function stam(randArray) {
     if (randArray[SIZE - 2] == randArray[SIZE - 1] && randArray[SIZE - 2] == randArray[0]) {
         randArray[SIZE - 1] = 0;
     }
@@ -158,8 +169,6 @@ function checkBeatRandom(randArray) {
     else if (randArray[SIZE - 1] == randArray[0] && randArray[1] == randArray[0]) {
         randArray[1] = 0;
     }
-
-
-
     return randArray;
 }
+ //function backBeat(stackNums, randArray, i) {}

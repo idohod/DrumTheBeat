@@ -1,5 +1,5 @@
 const SIZE = 16;
-var flag ;
+var flag;
 var level;
 
 
@@ -27,8 +27,8 @@ document.querySelector(".play").addEventListener('click', function () {
         return;
     }
 
-   
-    difficlty(level,true);
+
+    difficlty(level, true);
 
 });
 
@@ -36,25 +36,25 @@ document.querySelector(".play").addEventListener('click', function () {
 document.getElementById("beginner").addEventListener('click', function () {
     level = "beginner";
 
-    difficlty(level,false);
+    difficlty(level, false);
 
 });
 
 document.getElementById("advance").addEventListener('click', function () {
     level = "advance";
 
-    difficlty(level,false);
+    difficlty(level, false);
 
 });
 
 document.getElementById("expert").addEventListener('click', function () {
     level = "Expert";
 
-    difficlty(level,false);
+    difficlty(level, false);
 
 });
 
-document.getElementById("clear").addEventListener('click', function () {    
+document.getElementById("clear").addEventListener('click', function () {
 
     var tmp = genBeat();
     for (i = 0; i < tmp.length; i++)
@@ -63,10 +63,10 @@ document.getElementById("clear").addEventListener('click', function () {
     var temp = genAdvanceOrExpert();
     for (i = 0; i < temp.length; i++)
         hideAll(temp[i]);
-});     
+});
 
 //"MAIN"
-function difficlty(level,flag) {
+function difficlty(level, flag) {
     var BPM = getBMP();
     if (BPM == 0)
         return;
@@ -76,8 +76,10 @@ function difficlty(level,flag) {
     else
         var allFill = genAdvanceOrExpert();
 
+    var theFill = setFill(allFill[0], allFill[1], allFill[2], allFill[3], level,flag);
+
     var allBeat = genBeat();
     setHHVis(allBeat[0], level);
-    BeatVisibility(allBeat[1], allBeat[2], level,flag);
-    setFill(allFill[0], allFill[1], allFill[2], allFill[3], level);
+
+    BeatVisibility(allBeat[1], allBeat[2], level, flag, theFill);
 }
