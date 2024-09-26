@@ -44,21 +44,21 @@ function BeatVisibility(fullSnare, fullBass, level, flag, fillPattern) {
 
         var tempo = BPM / 4;
         BeatResalt(easyBeat, fullSnare, fullBass);
-        playBeatPattern(easyBeat, tempo, level, fillPattern);
+        playBeatPattern(easyBeat, tempo, level, fillPattern,0);
     }
     else if (level == "advance") {
 
         var tempo = BPM / 4;
         var resBeat = checkBeatRandom(randomBeat, level);
         BeatResalt(resBeat, fullSnare, fullBass);
-        playBeatPattern(resBeat, tempo, level, fillPattern);
+        playBeatPattern(resBeat, tempo, level, fillPattern,0);
     }
     else {
-        
+
         var tempo = BPM / 4;
         var exBeat = checkBeatRandom(randomBeat, level);
         BeatResalt(exBeat, fullSnare, fullBass);
-        playBeatPattern(randomBeat, tempo, level, fillPattern);
+        playBeatPattern(randomBeat, tempo, level, fillPattern,0);
     }
 }
 

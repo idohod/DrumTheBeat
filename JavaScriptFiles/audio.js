@@ -40,29 +40,39 @@ function getBMP() {
     }
 }
 
-function playBeatPattern(beatPattern, interval, level, allFill) {
+function playBeatPattern(beatPattern, interval, level, fillPattern, counter) {
     let i = 0;
     stillPlaying = true;
     HHElement.volume = volumes.hhVolume;
     SnareElement.volume = volumes.snareVolume;
     BassElement.volume = volumes.bassVolume;
-    const playNextBeat = () => {
+   /* if(counter == 3){
+        clearInterval(beatInterval);
+        HHElement.pause();
+        SnareElement.pause();
+        BassElement.pause();
+        playFillPattern(beatPattern,interval,level,fillPattern);
+        return;
 
-        if (i < SIZE)
+    }
+*/    const playNextBeat = () => {
+
+        if (i < SIZE) {
             marker(i, false);
-
+            HHaudio(i, level);
+            BassAndSnareAudio(i, beatPattern);
+        }
         if (i == SIZE) {
+            playFillPattern(beatPattern, interval, level, fillPattern);
+
             clearInterval(beatInterval);
             HHElement.pause();
             SnareElement.pause();
             BassElement.pause();
-            playFillPattern(allFill, interval);
+            //   playBeatPattern(beatPattern, interval, level, fillPattern,counter+1);
         }
         CrashElement.pause();
         CrashElement.currentTime = 0;
-
-        HHaudio(i, level);
-        BassAndSnareAudio(i, beatPattern);
         i++;
 
     };
@@ -108,7 +118,7 @@ function ClearPattern(fillPattern) {
     });
 }
 
-function playFillPattern(fillPattern, interval) {
+function playFillPattern(beatPattern, interval, level, fillPattern) {
     let i = 0;
 
     FloorElement.volume = volumes.FloorVolume;
@@ -133,6 +143,8 @@ function playFillPattern(fillPattern, interval) {
             Tom1Element.pause();
             Tom2Element.pause();
             stillPlaying = false;
+
+            //  playBeatPattern(beatPattern, interval, level, fillPattern,0);
         }
         playTheFill(fillPattern, i);
         i++;
@@ -179,7 +191,7 @@ function playTheFill(fillPattern, i) {
     }
 }
 
-function marker(i, fromFill) {      
+function marker(i, fromFill) {
 
     if (fromFill == false) {
         theMarker.style.transform = `translateX(${77 * i}px) translateY(0px)`;
@@ -188,8 +200,8 @@ function marker(i, fromFill) {
         if (i != SIZE)
             theMarker.style.transform = `translateX(${77 * i}px) translateY(130px)`;
         else {
-            theMarker.style.transform = `translateX(${77 * (SIZE - 1) + 65}px) translateY(130px)`;
+            theMarker.style.transform = `translateX(${77 * i - 10}px) translateY(130px)`;
         }
-    }   
+    }
     theMarker.style.visibility = "visible";
 }
