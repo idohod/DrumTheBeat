@@ -7,6 +7,7 @@ const FloorElement = document.getElementById("FloorAudio");
 const CrashElement = document.getElementById("CrashAudio");
 
 var errorrMassage = document.getElementById("errorMassage");
+var theMarker = document.getElementById("marker");
 
 var stillPlaying;
 var toPauseAll;
@@ -24,7 +25,6 @@ const volumes = {
     crashVolume: 1.0
 };
 
-
 function getBMP() {
 
     const input = document.getElementById("BPM");
@@ -34,23 +34,22 @@ function getBMP() {
         errorrMassage.innerHTML = ""
         return 60000 / value;
     }
-
     else {
         errorrMassage.innerHTML = "must enter BPM!"
         return 0;
     }
-
 }
 
 function playBeatPattern(beatPattern, interval, level, allFill) {
     let i = 0;
     stillPlaying = true;
-    console.log(beatPattern);
     HHElement.volume = volumes.hhVolume;
     SnareElement.volume = volumes.snareVolume;
     BassElement.volume = volumes.bassVolume;
-
     const playNextBeat = () => {
+
+        if (i < SIZE)
+            marker(i, false);
 
         if (i == SIZE) {
             clearInterval(beatInterval);
@@ -67,10 +66,8 @@ function playBeatPattern(beatPattern, interval, level, allFill) {
         i++;
 
     };
-
     beatInterval = setInterval(playNextBeat, interval);
 }
-
 
 function HHaudio(i, level) {
     HHElement.currentTime = 0;
@@ -122,14 +119,14 @@ function playFillPattern(fillPattern, interval) {
     CrashElement.volume = volumes.crashVolume;
 
     const playNextFill = () => {
-        console.log(i);
+        marker(i, true);
+
         if (i < SIZE) {
             CrashElement.pause();
             CrashElement.currentTime = 0;
 
         }
         if (i == SIZE) {
-            console.log("if");
             CrashElement.play();
             clearInterval(fillInterval);
             FloorElement.pause();
@@ -182,13 +179,19 @@ function playTheFill(fillPattern, i) {
         SnareElement.pause();
     }
 }
-function pauseAll() {
 
-    HHElement.pause();
-    SnareElement.pause();
-    BassElement.pause();
-    FloorElement.pause();
-    Tom1Element.pause();
-    Tom2Element.pause();
+function marker(i, fromFill) {
+      
 
+    if (fromFill == false) {
+        theMarker.style.transform = `translateX(${77 * i}px) translateY(0px)`;
+    }
+    else {
+        if (i != SIZE)
+            theMarker.style.transform = `translateX(${77 * i}px) translateY(130px)`;
+        else {
+            theMarker.style.transform = `translateX(${77 * (SIZE - 1) + 65}px) translateY(130px)`;
+        }
+    }   
+    theMarker.style.visibility = "visible";
 }

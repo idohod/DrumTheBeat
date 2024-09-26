@@ -8,6 +8,8 @@ function genBeat() {
 
     return [fullHH, fullSnare, fullBass];
 }
+
+//show HH 8 or 16 times
 function setHHVis(fullHH, level) {
     if (level == "Expert")
         HH16(fullHH);
@@ -28,15 +30,8 @@ function HH16(fullHH) {
         fullHH[i].style.visibility = "visible";
 }
 
-function playAgain(res, tempo, level, flag, allFill) {
-
-    if (flag)
-        playBeatPattern(res, tempo, level, allFill);
-};
-
-
-// Show or hide all beats
-function BeatVisibility(fullSnare, fullBass, level, flag, allFill) {
+// Show or hide beats by level
+function BeatVisibility(fullSnare, fullBass, level, flag, fillPattern) {
 
     var BPM = getBMP();
 
@@ -45,47 +40,39 @@ function BeatVisibility(fullSnare, fullBass, level, flag, allFill) {
         easyBeat = easyBeats();
     }
 
-
-
     if (level == "beginner") {
 
         var tempo = BPM / 4;
-
         BeatResalt(easyBeat, fullSnare, fullBass);
-
-        playBeatPattern(easyBeat, tempo, level, allFill);
-
-        //  playAgain(easyBeat, tempo, level, flag,allFill);
-
-
+        playBeatPattern(easyBeat, tempo, level, fillPattern);
     }
     else if (level == "advance") {
-        var tempo = BPM / 4;
 
+        var tempo = BPM / 4;
         var resBeat = checkBeatRandom(randomBeat, level);
         BeatResalt(resBeat, fullSnare, fullBass);
-        playBeatPattern(resBeat, tempo, level, allFill);
+        playBeatPattern(resBeat, tempo, level, fillPattern);
     }
     else {
         var tempo = BPM / 4;
         var exBeat = checkBeatRandom(randomBeat, level);
         BeatResalt(exBeat, fullSnare, fullBass);
-        playBeatPattern(randomBeat, tempo, level, allFill);
+        playBeatPattern(randomBeat, tempo, level, fillPattern);
     }
 }
 
-
+// get randomly one of the beat patterns
 function easyBeats() {
-    var b1 = [1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0];
-    var b2 = [1, 0, 1, 0, 2, 0, 0, 0, 1, 0, 1, 0, 2, 0, 0, 0];
-    var b3 = [1, 0, 1, 0, 2, 0, 2, 0, 1, 0, 1, 0, 2, 0, 2, 0];
-    var b4 = [1, 0, 1, 0, 2, 0, 1, 0, 1, 0, 0, 0, 2, 0, 1, 0];
-    var b5 = [1, 1, 0, 0, 2, 0, 0, 0, 1, 1, 0, 0, 2, 0, 0, 0];
-    var b6 = [1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 1, 0, 2, 0, 2, 0];
-    var b7 = [1, 0, 0, 0, 2, 0, 1, 0, 0, 0, 1, 0, 2, 0, 2, 0];
-    var b8 = [1, 0, 0, 0, 2, 0, 1, 0, 1, 0, 2, 0, 2, 0, 0, 0];
-    var b9 = [1, 0, 1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 2, 0, 2, 0];
-    var b10 = [1, 0, 0, 0, 2, 0, 1, 0, 1, 0, 2, 0, 0, 0, 2, 0];
+    var b1  = [1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0];
+    var b2  = [1, 0, 1, 0, 2, 0, 0, 0, 1, 0, 1, 0, 2, 0, 0, 0];
+    var b3  = [1, 0, 1, 0, 2, 0, 2, 0, 1, 0, 1, 0, 2, 0, 2, 0];
+    var b4  = [1, 0, 1, 0, 2, 0, 1, 0, 1, 0, 0, 0, 2, 0, 1, 0];
+    var b5  = [1, 1, 0, 0, 2, 0, 0, 0, 1, 1, 0, 0, 2, 0, 0, 0];
+    var b6  = [1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 1, 0, 2, 0, 2, 0];
+    var b7  = [1, 0, 0, 0, 2, 0, 1, 0, 0, 0, 1, 0, 2, 0, 2, 0];
+    var b8  = [1, 0, 0, 0, 2, 0, 1, 0, 1, 0, 2, 0, 2, 0, 0, 0];
+    var b9  = [1, 0, 1, 0, 2, 0, 2, 0, 0, 0, 1, 0, 2, 0, 2, 0];
+    var b10 = [1, 0, 0, 0, 2, 0, 1, 0, 1, 0, 2, 0, 2, 0, 2, 0];
     var b11 = [1, 0, 1, 0, 2, 0, 1, 0, 1, 0, 0, 0, 2, 0, 0, 0];
     var b12 = [1, 0, 0, 1, 2, 0, 0, 0, 1, 0, 0, 1, 2, 0, 0, 0];
     var b13 = [1, 0, 0, 0, 2, 0, 0, 1, 1, 0, 0, 0, 2, 0, 0, 1];
@@ -97,6 +84,7 @@ function easyBeats() {
 
     return all[randomIndex];
 }
+//show the beat 
 function BeatResalt(checkedArr, randSnare, randBass) {
     for (let i = 0; i < SIZE; i++) {
         if (checkedArr[i] == 1) {
@@ -147,7 +135,6 @@ function checkBeatRandom(randArray, level) {
         if (randArray[i] == randArray[i + 1] && randArray[i + 1] == randArray[i + 2]) {
 
             if (level == "advance") {
-
                 if (stackNums.includes(i + 2))
                     randArray[i] = 0;
                 else
@@ -163,8 +150,6 @@ function checkBeatRandom(randArray, level) {
     return randArray;
 }
 
-
-
 function prevent3RepsInEnd(randArray) {
     if (randArray[SIZE - 2] == randArray[SIZE - 1] && randArray[SIZE - 2] == randArray[0]) {
         randArray[SIZE - 1] = 0;
@@ -175,4 +160,3 @@ function prevent3RepsInEnd(randArray) {
     }
     return randArray;
 }
-

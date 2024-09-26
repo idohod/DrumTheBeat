@@ -2,8 +2,7 @@ var easyFill;
 var advanceFill;
 var expertFill;
 
-
-
+// generate fill by level
 function genBegginer() {
 
     var fullTom1 = generate('Tom1container', 'Tom1', 'T1');
@@ -16,16 +15,13 @@ function genBegginer() {
 
 function genAdvanceOrExpert() {
 
-
     var fullTom1 = generate('Tom1container', 'Tom1', 'O');
     var fullTom2 = generate('Tom2container', 'Tom2', 'O');
     var fullSnare1 = generate('Snare1Container', 'Snare1', 'O');
     var fullFloor = generate('FloorContainer', 'floor', 'O');
 
     return [fullTom1, fullTom2, fullSnare1, fullFloor];
-
 }
-
 
 function setFill(fullTom1, fullTom2, fullSnare1, fullFloor, level, flag) {
 
@@ -34,7 +30,6 @@ function setFill(fullTom1, fullTom2, fullSnare1, fullFloor, level, flag) {
         advanceFill = advanceFills();
         expertFill = randFill();
     }
-
 
     if (level == "beginner") {
         FillResalt(easyFill, fullTom1, fullTom2, fullSnare1, fullFloor);

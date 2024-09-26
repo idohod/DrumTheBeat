@@ -22,7 +22,6 @@ function hideAll(arr) {
 document.getElementById("playAgain").addEventListener('click', function () {
     toPauseAll = false;
 
-
     if (randomBeat == null || easyBeat == null) {
         errorrMassage.innerHTML = "must enter BPM and chose level first!";
         return;
@@ -31,9 +30,7 @@ document.getElementById("playAgain").addEventListener('click', function () {
         errorrMassage.innerHTML = ''
     if (!stillPlaying)
         difficlty(level, true);
-
 });
-
 
 document.getElementById("beginner").addEventListener('click', function () {
     level = "beginner";
@@ -76,10 +73,9 @@ document.getElementById("clear").addEventListener('click', function () {
 
     clearInterval(beatInterval);
     clearInterval(fillInterval);
-
-
+    theMarker.style.transform = `translateX(0px) translateY(0px)`;
+    theMarker.style.visibility = "hidden";
 });
-
 
 
 //"MAIN"
