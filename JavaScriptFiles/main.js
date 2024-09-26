@@ -38,7 +38,6 @@ document.getElementById("beginner").addEventListener('click', function () {
 
     if (!stillPlaying)
         difficlty(level, false);
-
 });
 
 document.getElementById("advance").addEventListener('click', function () {
@@ -76,8 +75,6 @@ document.getElementById("clear").addEventListener('click', function () {
     theMarker.style.transform = `translateX(0px) translateY(0px)`;
     theMarker.style.visibility = "hidden";
 });
-
-
 //"MAIN"
 function difficlty(level, flag) {
 
@@ -94,6 +91,5 @@ function difficlty(level, flag) {
 
     var allBeat = genBeat();
     setHHVis(allBeat[0], level);
-
     BeatVisibility(allBeat[1], allBeat[2], level, flag, theFill);
 }

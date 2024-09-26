@@ -78,7 +78,6 @@ function HHaudio(i, level) {
         else
             HHElement.pause();
     }
-
     else
         HHElement.play();
 }
@@ -180,8 +179,7 @@ function playTheFill(fillPattern, i) {
     }
 }
 
-function marker(i, fromFill) {
-      
+function marker(i, fromFill) {      
 
     if (fromFill == false) {
         theMarker.style.transform = `translateX(${77 * i}px) translateY(0px)`;

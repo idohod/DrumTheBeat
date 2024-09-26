@@ -54,6 +54,7 @@ function BeatVisibility(fullSnare, fullBass, level, flag, fillPattern) {
         playBeatPattern(resBeat, tempo, level, fillPattern);
     }
     else {
+        
         var tempo = BPM / 4;
         var exBeat = checkBeatRandom(randomBeat, level);
         BeatResalt(exBeat, fullSnare, fullBass);
