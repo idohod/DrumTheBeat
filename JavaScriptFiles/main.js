@@ -74,6 +74,9 @@ document.getElementById("clear").addEventListener('click', function () {
     clearInterval(fillInterval);
     theMarker.style.transform = `translateX(0px) translateY(0px)`;
     theMarker.style.visibility = "hidden";
+
+    const input = document.getElementById("BPM");
+    input.value = 0;
 });
 //"MAIN"
 function difficlty(level, flag) {
